@@ -1,8 +1,14 @@
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { authActions } from '../store';
 import classes from './Header.module.css';
 
 const Header = () => {
+
+  const dispatch = useDispatch()
+  const logoutHandler = (event) => {
+    
+    dispatch(authActions.logout())
+  }
 
   const isAuth = useSelector(state => state.auth.isAuthenticated)
 
@@ -19,7 +25,7 @@ const Header = () => {
               <a href='/'>My Sales</a>
             </li>
             <li>
-              <button>Logout</button>
+              <button onClick={logoutHandler}>Logout</button>
             </li>
           </ul>
         </nav>
